@@ -2,6 +2,8 @@
 #include "Wall.h"
 #include "PlayerTank.h"
 #include "Bullet.h"
+#include <string>
+#include <fstream>
 
 Game::Game()
     : player(((MAP_WIDTH - 1) / 2)* TILE_SIZE, (MAP_HEIGHT - 2)* TILE_SIZE)
@@ -23,7 +25,8 @@ Game::Game()
         running = false;
     }
 
-    generateWalls();
+    //generateWalls();
+    generateWallsFromFile("map.txt");
     spawnEnemyTank();
 }
 
@@ -85,7 +88,8 @@ void Game::handleMenuEvents(SDL_Event& event)
             walls.clear();
             enemies.clear();
             player.resetPosition();
-            generateWalls();
+            //generateWalls();
+			generateWallsFromFile("map.txt");
             spawnEnemyTank();
             currentState = PLAYING;
         }
@@ -156,14 +160,33 @@ void Game::render()
     SDL_RenderPresent(renderer);
 }
 
-void Game::generateWalls() {
-    for (int i = 3; i < MAP_HEIGHT - 3; i += 2) {
-        for (int j = 3; j < MAP_WIDTH - 3; j += 2) {
-            Wall w = Wall(j * TILE_SIZE, i * TILE_SIZE);
-            walls.push_back(w);
+//void Game::generateWalls() {
+//    for (int i = 3; i < MAP_HEIGHT - 3; i += 2) {
+//        for (int j = 3; j < MAP_WIDTH - 3; j += 2) {
+//            Wall w = Wall(j * TILE_SIZE, i * TILE_SIZE);
+//            walls.push_back(w);
+//        }
+//    }
+//}
+void Game::generateWallsFromFile(const string& filename)
+{
+    walls.clear();
+    ifstream file(filename);
+    string line;
+    int row = 0;
+
+    while (getline(file, line) && row < MAP_HEIGHT) {
+        for (int col = 0; col < min((int)line.size(), MAP_WIDTH) -1; col++) {
+            if (line[col] == '1') {
+                int x = col * TILE_SIZE + TILE_SIZE;
+                int y = row * TILE_SIZE + TILE_SIZE;
+                walls.emplace_back(x, y);
+            }
         }
+        row++;
     }
 }
+
 
 
 void Game::update()

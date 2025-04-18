@@ -42,7 +42,8 @@ public:
 	void render();
 	void run();
 	~Game();
-	void generateWalls();
+	//void generateWalls();
+	void generateWallsFromFile(const std::string& filename);
 	void handleMenuEvents(SDL_Event& event);
 	void update();
 	void spawnEnemyTank();
