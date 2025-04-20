@@ -7,32 +7,24 @@
       "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Wall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\PlayerTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\PlayerTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\EnemyTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\EnemyTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\EnemyTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\EnemyTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -43,12 +35,20 @@
       "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\PlayerTank.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\PlayerTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\PlayerTank.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\EnemyTank.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\EnemyTank.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\Wall.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|D:\\sdl2\\TapLamGame\\TapLamGame\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B8ED3989-EE94-40FF-A98F-A11B7CB14A2F}|TapLamGame\\TapLamGame.vcxproj|solutionrelative:TapLamGame\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,7 +62,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "map.txt",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\map.txt",
               "RelativeDocumentMoniker": "TapLamGame\\map.txt",
@@ -75,13 +75,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "EnemyTank.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\EnemyTank.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\EnemyTank.cpp",
               "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\EnemyTank.cpp",
               "RelativeToolTip": "TapLamGame\\EnemyTank.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-08T14:03:54.392Z",
               "EditorCaption": ""
@@ -101,20 +101,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Bullet.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\Bullet.cpp",
               "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.cpp",
               "RelativeToolTip": "TapLamGame\\Bullet.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-31T10:20:57.418Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Bullet.h",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Bullet.h",
               "RelativeDocumentMoniker": "TapLamGame\\Bullet.h",
@@ -127,20 +127,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "PlayerTank.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\PlayerTank.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\PlayerTank.cpp",
               "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\PlayerTank.cpp",
               "RelativeToolTip": "TapLamGame\\PlayerTank.cpp",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-30T14:17:57.364Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "PlayerTank.h",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\PlayerTank.h",
               "RelativeDocumentMoniker": "TapLamGame\\PlayerTank.h",
@@ -153,19 +153,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "Wall.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\Wall.cpp",
               "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.cpp",
               "RelativeToolTip": "TapLamGame\\Wall.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-30T13:08:51.198Z"
+              "WhenOpened": "2025-03-30T13:08:51.198Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "Wall.h",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Wall.h",
               "RelativeDocumentMoniker": "TapLamGame\\Wall.h",
@@ -182,29 +183,29 @@
               "Title": "Game.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Game.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\Game.cpp",
-              "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\Game.cpp*",
-              "RelativeToolTip": "TapLamGame\\Game.cpp*",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAK4AAAAEAAAAAAAAAA==",
+              "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\Game.cpp",
+              "RelativeToolTip": "TapLamGame\\Game.cpp",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAH8AAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-29T15:32:40.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Game.h",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\Game.h",
               "RelativeDocumentMoniker": "TapLamGame\\Game.h",
               "ToolTip": "D:\\sdl2\\TapLamGame\\TapLamGame\\Game.h",
               "RelativeToolTip": "TapLamGame\\Game.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAC0AAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-29T15:32:29.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\sdl2\\TapLamGame\\TapLamGame\\main.cpp",
               "RelativeDocumentMoniker": "TapLamGame\\main.cpp",

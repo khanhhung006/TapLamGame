@@ -13,7 +13,7 @@ Game::Game()
         running = false;
     }
 
-    window = SDL_CreateWindow("Game Battle City v1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Tanker vs Tanker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window) {
         std::cerr << "Window is not created, error: " << SDL_GetError() << std::endl;
         running = false;
@@ -85,6 +85,9 @@ void Game::handleMenuEvents(SDL_Event& event)
 {
     if (event.type == SDL_KEYDOWN) {
         if (event.key.keysym.sym == SDLK_SPACE) {
+            if (!playerWon) {
+                enemyNumber = 1;
+            }
             walls.clear();
             enemies.clear();
             player.resetPosition();
@@ -111,15 +114,23 @@ void Game::renderMenu()
     }
 
     SDL_Color color = { 255, 255, 255 };
+
     std::string title;
     if (currentState == GAME_OVER) {
         title = playerWon ? "You Win!" : "You Lose!";
     }
     else {
-        title = "Battle City";
+        title = "Tanker vs Tanker";
     }
 
-    std::string instruction = "Press SPACE to start";
+    std::string instruction;
+	if (currentState == GAME_OVER) {
+		instruction = playerWon ? "Press SPACE to continue" : "Press SPACE to restart";
+	}
+	else {
+		instruction = "Press SPACE to start";
+	}
+    std::string levelText = "Level " + std::to_string(enemyNumber);
 
     SDL_Surface* titleSurface = TTF_RenderText_Solid(font, title.c_str(), color);
     SDL_Texture* titleTexture = SDL_CreateTextureFromSurface(renderer, titleSurface);
@@ -135,9 +146,17 @@ void Game::renderMenu()
     SDL_FreeSurface(insSurface);
     SDL_DestroyTexture(insTexture);
 
+    SDL_Surface* levelSurface = TTF_RenderText_Solid(font, levelText.c_str(), color);
+    SDL_Texture* levelTexture = SDL_CreateTextureFromSurface(renderer, levelSurface);
+    SDL_Rect levelRect = { 20, 20, levelSurface->w, levelSurface->h };
+    SDL_RenderCopy(renderer, levelTexture, NULL, &levelRect);
+    SDL_FreeSurface(levelSurface);
+    SDL_DestroyTexture(levelTexture);
+
     TTF_CloseFont(font);
     SDL_RenderPresent(renderer);
 }
+
 
 void Game::render()
 {
@@ -156,6 +175,20 @@ void Game::render()
     player.render(renderer);
     for (auto& enemy : enemies) {
         enemy.render(renderer);
+    }
+    TTF_Font* font = TTF_OpenFont("font/arial.ttf", 24);
+    if (font) {
+        SDL_Color color = { 0, 0, 0 };
+        std::string levelText = "Level " + std::to_string(enemyNumber);
+
+        SDL_Surface* surface = TTF_RenderText_Solid(font, levelText.c_str(), color);
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+        SDL_Rect levelRect = { 10, 10, surface->w, surface->h };
+        SDL_RenderCopy(renderer, texture, NULL, &levelRect);
+
+        SDL_FreeSurface(surface);
+        SDL_DestroyTexture(texture);
+        TTF_CloseFont(font);
     }
     SDL_RenderPresent(renderer);
 }
@@ -176,7 +209,7 @@ void Game::generateWallsFromFile(const string& filename)
     int row = 0;
 
     while (getline(file, line) && row < MAP_HEIGHT) {
-        for (int col = 0; col < min((int)line.size(), MAP_WIDTH) -1; col++) {
+        for (int col = 0; col < min((int)line.size(), MAP_WIDTH) - 1; col++) {
             if (line[col] == '1') {
                 int x = col * TILE_SIZE + TILE_SIZE;
                 int y = row * TILE_SIZE + TILE_SIZE;
@@ -185,6 +218,11 @@ void Game::generateWallsFromFile(const string& filename)
         }
         row++;
     }
+	for (int i = 0; i < walls.size(); i++)
+	{
+		walls[i].active = true;
+	}
+	file.close();
 }
 
 
@@ -236,6 +274,7 @@ void Game::update()
 
     if (enemies.empty()) {
         playerWon = true;
+		enemyNumber++;
         currentState = GAME_OVER;
     }
 
