@@ -73,7 +73,7 @@ void PlayerTank::shoot()
 	bullets.push_back(Bullet(x + TILE_SIZE / 2 - 5, y + TILE_SIZE / 2 - 5, this->dirX, this-> dirY));
 
 }
-//Dòng d??i khó hi?u quá
+
 void PlayerTank::updateBullets()
 {
 	for (auto& bullet : bullets)
