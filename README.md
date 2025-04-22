@@ -35,14 +35,6 @@
 - Pause/Resume
 
 - Status bar / lives (mạng/máu...)
-# Các hình ảnh về game:
-
-![image](https://github.com/user-attachments/assets/5b506c48-9016-42b9-ae92-b0e9eebf2cd9)
-![image](https://github.com/user-attachments/assets/23adc761-2c65-4d78-8930-2a90ecb6ea31)
-![image](https://github.com/user-attachments/assets/4d168e5d-93a8-4d17-8f89-4ca52e7dcc9d)
-
-
-
 # Mức độ sử dụng AI:
 - AI dùng để tra cứu các hàm và chỉ cách dùng các hàm đó.
 - AI dùng để kiểm tra những lỗi sai khi mới bắt đầu sử dụng hàm.
@@ -50,4 +42,11 @@
 - https://lazyfoo.net/tutorials/SDL/index.php
 - https://github.com/krystiankaluzny/Tanks
 - https://pixabay.com/vi/sound-effects/search/s%C3%BAng/
+
+
+# Các hình ảnh về game:
+
+![image](https://github.com/user-attachments/assets/5b506c48-9016-42b9-ae92-b0e9eebf2cd9)
+![image](https://github.com/user-attachments/assets/23adc761-2c65-4d78-8930-2a90ecb6ea31)
+![image](https://github.com/user-attachments/assets/4d168e5d-93a8-4d17-8f89-4ca52e7dcc9d)
 
