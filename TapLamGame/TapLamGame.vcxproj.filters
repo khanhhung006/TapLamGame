@@ -53,5 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="map.txt" />
+    <Text Include="highscore.txt" />
   </ItemGroup>
 </Project>

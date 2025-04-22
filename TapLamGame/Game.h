@@ -9,6 +9,8 @@
 #include<SDL.h>
 #include<SDL_image.h>
 #include<SDL_ttf.h>
+#include <SDL_mixer.h>
+
 
 
 const int SCREEN_WIDTH = 800;
@@ -33,10 +35,15 @@ public:
 	vector<Wall> walls;
 	PlayerTank player;
 	int enemyNumber = 1;
+	int highScore = 1;
+
 	vector<EnemyTank> enemies;
 	
 	GameState currentState = MENU;
 	bool playerWon = false;
+
+	Mix_Chunk* shootSound = nullptr;
+
 
 	Game();
 	void render();
@@ -48,5 +55,8 @@ public:
 	void update();
 	void spawnEnemyTank();
 	void renderMenu();
+	void loadHighScore();
+	void saveHighScore();
+
 };
 #endif

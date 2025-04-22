@@ -12,6 +12,11 @@ Game::Game()
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
         running = false;
     }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cerr << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+        running = false;
+        return;
+    }
 
     window = SDL_CreateWindow("Tanker vs Tanker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window) {
@@ -24,14 +29,24 @@ Game::Game()
         std::cerr << "Renderer is not created, error: " << SDL_GetError() << std::endl;
         running = false;
     }
+    shootSound = Mix_LoadWAV("sounds/shoot.wav");
+    if (!shootSound) {
+        std::cerr << "Failed to load shoot sound: " << Mix_GetError() << std::endl;
+    }
+
 
     //generateWalls();
     generateWallsFromFile("map.txt");
     spawnEnemyTank();
+    loadHighScore();
+
 }
 
 Game::~Game()
 {
+    Mix_FreeChunk(shootSound);
+    Mix_CloseAudio();
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -39,6 +54,8 @@ Game::~Game()
 
 void Game::run()
 {
+
+
     if (TTF_Init() < 0) {
         std::cerr << "Failed to initialize TTF: " << TTF_GetError() << std::endl;
         running = false;
@@ -62,7 +79,10 @@ void Game::run()
                     case SDLK_DOWN: player.move(0, 5, walls); break;
                     case SDLK_LEFT: player.move(-5, 0, walls); break;
                     case SDLK_RIGHT: player.move(5, 0, walls); break;
-                    case SDLK_SPACE: player.shoot(); break;
+                    case SDLK_SPACE:
+                        player.shoot();
+                        Mix_PlayChannel(-1, shootSound, 0);
+                        break;
                     }
                 }
             }
@@ -117,7 +137,7 @@ void Game::renderMenu()
 
     std::string title;
     if (currentState == GAME_OVER) {
-        title = playerWon ? "You Win!" : "You Lose!";
+        title = playerWon ? "You Win!" : "GAME OVER";
     }
     else {
         title = "Tanker vs Tanker";
@@ -131,6 +151,7 @@ void Game::renderMenu()
 		instruction = "Press SPACE to start";
 	}
     std::string levelText = "Level " + std::to_string(enemyNumber);
+    std::string highText = "High Score: " + std::to_string(highScore);
 
     SDL_Surface* titleSurface = TTF_RenderText_Solid(font, title.c_str(), color);
     SDL_Texture* titleTexture = SDL_CreateTextureFromSurface(renderer, titleSurface);
@@ -152,6 +173,15 @@ void Game::renderMenu()
     SDL_RenderCopy(renderer, levelTexture, NULL, &levelRect);
     SDL_FreeSurface(levelSurface);
     SDL_DestroyTexture(levelTexture);
+
+
+    SDL_Surface* highSurface = TTF_RenderText_Solid(font, highText.c_str(), color);
+    SDL_Texture* highTexture = SDL_CreateTextureFromSurface(renderer, highSurface);
+    SDL_Rect highRect = { SCREEN_WIDTH / 2 - highSurface->w / 2, 360, highSurface->w, highSurface->h };
+    SDL_RenderCopy(renderer, highTexture, NULL, &highRect);
+    SDL_FreeSurface(highSurface);
+    SDL_DestroyTexture(highTexture);
+
 
     TTF_CloseFont(font);
     SDL_RenderPresent(renderer);
@@ -180,11 +210,19 @@ void Game::render()
     if (font) {
         SDL_Color color = { 0, 0, 0 };
         std::string levelText = "Level " + std::to_string(enemyNumber);
+        std::string highText = "High Score: " + std::to_string(highScore);
 
         SDL_Surface* surface = TTF_RenderText_Solid(font, levelText.c_str(), color);
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
         SDL_Rect levelRect = { 10, 10, surface->w, surface->h };
         SDL_RenderCopy(renderer, texture, NULL, &levelRect);
+
+        SDL_Surface* highSurface = TTF_RenderText_Solid(font, highText.c_str(), color);
+        SDL_Texture* highTexture = SDL_CreateTextureFromSurface(renderer, highSurface);
+        SDL_Rect highRect = { 180 , 10 , highSurface->w, highSurface->h };
+        SDL_RenderCopy(renderer, highTexture, NULL, &highRect);
+        SDL_FreeSurface(highSurface);
+        SDL_DestroyTexture(highTexture);
 
         SDL_FreeSurface(surface);
         SDL_DestroyTexture(texture);
@@ -282,6 +320,10 @@ void Game::update()
         for (auto& bullet : enemy.bullets) {
             if (SDL_HasIntersection(&bullet.rect, &player.rect)) {
                 playerWon = false;
+                if (enemyNumber > highScore) {
+                    highScore = enemyNumber;
+                    saveHighScore();
+                }
                 currentState = GAME_OVER;
                 break;
             }
@@ -307,5 +349,24 @@ void Game::spawnEnemyTank()
             }
         }
         enemies.emplace_back(ex, ey);
+    }
+}
+
+void Game::loadHighScore() {
+    std::ifstream file("highscore.txt");
+    if (file.is_open()) {
+        file >> highScore;
+        file.close();
+    }
+    else {
+        highScore = 1;
+    }
+}
+
+void Game::saveHighScore() {
+    std::ofstream file("highscore.txt");
+    if (file.is_open()) {
+        file << highScore;
+        file.close();
     }
 }
