@@ -35,6 +35,16 @@ Game::Game()
     }
 
 
+    SDL_Surface* bgSurface = IMG_Load("background.png");
+    if (!bgSurface) {
+        std::cerr << "Failed to load menu background: " << IMG_GetError() << std::endl;
+    }
+    else {
+        menuBackground = SDL_CreateTextureFromSurface(renderer, bgSurface);
+        SDL_FreeSurface(bgSurface);
+    }
+
+
     //generateWalls();
     generateWallsFromFile("map.txt");
     spawnEnemyTank();
@@ -46,10 +56,15 @@ Game::~Game()
 {
     Mix_FreeChunk(shootSound);
     Mix_CloseAudio();
+    if (menuBackground) {
+        SDL_DestroyTexture(menuBackground);
+    }
+
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+
 }
 
 void Game::run()
@@ -126,6 +141,16 @@ void Game::renderMenu()
 {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(renderer);
+
+
+    if (menuBackground) {
+        SDL_Rect bgRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+        SDL_RenderCopy(renderer, menuBackground, NULL, &bgRect);
+    }
+    else {
+        SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
+        SDL_RenderClear(renderer);
+    }
 
     TTF_Font* font = TTF_OpenFont("font/arial.ttf", 28);
     if (!font) {

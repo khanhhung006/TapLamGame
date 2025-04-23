@@ -37,6 +37,8 @@ public:
 	int enemyNumber = 1;
 	int highScore = 1;
 
+	SDL_Texture* menuBackground = nullptr;
+
 	vector<EnemyTank> enemies;
 	
 	GameState currentState = MENU;
