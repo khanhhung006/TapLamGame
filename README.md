@@ -8,7 +8,7 @@
 
 - Texture✅
 
-- Background
+- Background✅
 
 - Event bàn phím✅
 
@@ -49,4 +49,5 @@
 ![image](https://github.com/user-attachments/assets/5b506c48-9016-42b9-ae92-b0e9eebf2cd9)
 ![image](https://github.com/user-attachments/assets/23adc761-2c65-4d78-8930-2a90ecb6ea31)
 ![image](https://github.com/user-attachments/assets/4d168e5d-93a8-4d17-8f89-4ca52e7dcc9d)
+
 
