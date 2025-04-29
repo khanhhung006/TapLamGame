@@ -1,5 +1,8 @@
 #include"Wall.h"
 #include"Game.h"
+
+SDL_Texture* Wall::wallTexture = nullptr;
+
 Wall::Wall(int startX,int startY)
 {
 	x = startX;
@@ -9,9 +12,8 @@ Wall::Wall(int startX,int startY)
 }
 void Wall::render(SDL_Renderer* renderer)
 {
-	if (active)
-	{
-		SDL_SetRenderDrawColor(renderer, 150, 75, 0, 255);
-		SDL_RenderFillRect(renderer, &rect);
+	if (active && wallTexture) {
+		SDL_RenderCopy(renderer, wallTexture, NULL, &rect);
 	}
 }
+

@@ -1,8 +1,2 @@
-﻿  Bullet.cpp
-  EnemyTank.cpp
-  Game.cpp
-  PlayerTank.cpp
-  Wall.cpp
-  main.cpp
-  Generating Code...
+﻿  Game.cpp
   TapLamGame.vcxproj -> D:\sdl2\TapLamGame\x64\Debug\TapLamGame.exe

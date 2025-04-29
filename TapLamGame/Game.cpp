@@ -18,7 +18,7 @@ Game::Game()
         return;
     }
 
-    window = SDL_CreateWindow("Tanker vs Tanker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Tanker vs Tanker(Thap Tank Tu Do)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window) {
         std::cerr << "Window is not created, error: " << SDL_GetError() << std::endl;
         running = false;
@@ -35,7 +35,7 @@ Game::Game()
     }
 
 
-    SDL_Surface* bgSurface = IMG_Load("background.png");
+    SDL_Surface* bgSurface = IMG_Load("assets/background.png");
     if (!bgSurface) {
         std::cerr << "Failed to load menu background: " << IMG_GetError() << std::endl;
     }
@@ -43,6 +43,40 @@ Game::Game()
         menuBackground = SDL_CreateTextureFromSurface(renderer, bgSurface);
         SDL_FreeSurface(bgSurface);
     }
+    SDL_Surface* wallSurface = IMG_Load("assets/wall.png");
+    if (!wallSurface) {
+        std::cerr << "Failed to load wall texture: " << IMG_GetError() << std::endl;
+    }
+    else {
+        Wall::wallTexture = SDL_CreateTextureFromSurface(renderer, wallSurface);
+        SDL_FreeSurface(wallSurface);
+    }
+
+    backgroundMusic = Mix_LoadMUS("sounds/background_music.mp3");
+    if (!backgroundMusic) {
+        std::cerr << "Failed to load background music: " << Mix_GetError() << std::endl;
+    }
+
+    SDL_Surface* tutorialSurface = IMG_Load("assets/tutorial.png");
+    if (!tutorialSurface) {
+        std::cerr << "Failed to load tutorial image: " << IMG_GetError() << std::endl;
+    }
+    else {
+        tutorialTexture = SDL_CreateTextureFromSurface(renderer, tutorialSurface);
+        SDL_FreeSurface(tutorialSurface);
+    }
+    SDL_Surface* pauseSurface = IMG_Load("assets/pause.png");
+    if (!pauseSurface) {
+        std::cerr << "Failed to load pause button image: " << IMG_GetError() << std::endl;
+    }
+    else {
+        pauseButtonTexture = SDL_CreateTextureFromSurface(renderer, pauseSurface);
+        SDL_FreeSurface(pauseSurface);
+    }
+
+
+
+
 
 
     //generateWalls();
@@ -64,6 +98,21 @@ Game::~Game()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    if (Wall::wallTexture) {
+        SDL_DestroyTexture(Wall::wallTexture);
+        Wall::wallTexture = nullptr;
+    }
+    if (tutorialTexture) {
+        SDL_DestroyTexture(tutorialTexture);
+        tutorialTexture = nullptr;
+    }
+    if (pauseButtonTexture) {
+        SDL_DestroyTexture(pauseButtonTexture);
+        pauseButtonTexture = nullptr;
+    }
+
+
+
 
 }
 
@@ -82,6 +131,73 @@ void Game::run()
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT)
                 running = false;
+
+            if (event.type == SDL_MOUSEBUTTONDOWN) {
+                int mouseX = event.button.x;
+                int mouseY = event.button.y;
+
+                if (mouseX >= soundButtonRect.x && mouseX <= soundButtonRect.x + soundButtonRect.w * 3 &&
+                    mouseY >= soundButtonRect.y && mouseY <= soundButtonRect.y + soundButtonRect.h)
+                {
+                    soundOn = !soundOn; // Bật/Tắt âm thanh
+
+                    if (soundOn) {
+                        Mix_ResumeMusic();
+                    }
+                    else {
+                        Mix_PauseMusic();
+                    }
+                }
+
+                if (currentState == PLAYING) {
+                    if (event.type == SDL_MOUSEBUTTONDOWN) {
+                        int mouseX = event.button.x;
+                        int mouseY = event.button.y;
+
+                        if (mouseX >= pauseButtonRect.x && mouseX <= pauseButtonRect.x + pauseButtonRect.w &&
+                            mouseY >= pauseButtonRect.y && mouseY <= pauseButtonRect.y + pauseButtonRect.h) {
+                            currentState = PAUSED;
+                        }
+                    }
+                }
+
+            }
+            if (currentState == TUTORIAL) {
+                
+
+                if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN) {
+                    currentState = MENU;
+                }
+                renderTutorial();
+                continue;
+            }
+            if (currentState == PAUSED) {
+                if (event.type == SDL_MOUSEBUTTONDOWN) {
+                    int mouseX = event.button.x;
+                    int mouseY = event.button.y;
+
+                    // Nút Resume
+                    SDL_Rect resumeButtonRect = { SCREEN_WIDTH / 2 - 100, 200, 200, 50 };
+                    if (mouseX >= resumeButtonRect.x && mouseX <= resumeButtonRect.x + resumeButtonRect.w &&
+                        mouseY >= resumeButtonRect.y && mouseY <= resumeButtonRect.y + resumeButtonRect.h) {
+                        currentState = PLAYING; // Tiếp tục chơi
+                    }
+
+                    // Nút Back to Menu
+                    SDL_Rect menuButtonRect = { SCREEN_WIDTH / 2 - 100, 300, 200, 50 };
+                    if (mouseX >= menuButtonRect.x && mouseX <= menuButtonRect.x + menuButtonRect.w &&
+                        mouseY >= menuButtonRect.y && mouseY <= menuButtonRect.y + menuButtonRect.h) {
+                        enemyNumber = 1;
+                        walls.clear();
+                        enemies.clear();
+                        player.resetPosition();
+                        generateWallsFromFile("map.txt");
+                        spawnEnemyTank();
+                        currentState = MENU;
+                    }
+                }
+            }
+
 
             if (currentState == MENU || currentState == GAME_OVER) {
                 handleMenuEvents(event);
@@ -109,6 +225,9 @@ void Game::run()
             update();
             render();
         }
+        else if (currentState == PAUSED) {
+            renderPauseMenu();
+        }
 
         SDL_Delay(16);
     }
@@ -123,6 +242,12 @@ void Game::handleMenuEvents(SDL_Event& event)
             if (!playerWon) {
                 enemyNumber = 1;
             }
+            if (soundOn && Mix_PlayingMusic()) {
+                Mix_HaltMusic();
+            }
+
+ 
+
             walls.clear();
             enemies.clear();
             player.resetPosition();
@@ -135,10 +260,28 @@ void Game::handleMenuEvents(SDL_Event& event)
             running = false;
         }
     }
+    else if (event.type == SDL_MOUSEBUTTONDOWN) { 
+        int mouseX = event.button.x;
+        int mouseY = event.button.y;
+
+        // Kiểm tra click vào nút Tutorial
+        SDL_Rect tutorialButtonRect = { SCREEN_WIDTH / 2 - 100, 420, 200, 50 };
+        if (mouseX >= tutorialButtonRect.x && mouseX <= tutorialButtonRect.x + tutorialButtonRect.w &&
+            mouseY >= tutorialButtonRect.y && mouseY <= tutorialButtonRect.y + tutorialButtonRect.h  )
+        {
+            currentState = TUTORIAL;
+        }
+
+    }
+
 }
 
 void Game::renderMenu()
 {
+    if (soundOn && !Mix_PlayingMusic()) {
+        Mix_PlayMusic(backgroundMusic, -1);
+    }
+
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(renderer);
 
@@ -152,7 +295,7 @@ void Game::renderMenu()
         SDL_RenderClear(renderer);
     }
 
-    TTF_Font* font = TTF_OpenFont("font/arial.ttf", 28);
+    TTF_Font* font = TTF_OpenFont("font/mine.ttf", 38);
     if (!font) {
         std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
         return;
@@ -165,7 +308,7 @@ void Game::renderMenu()
         title = playerWon ? "You Win!" : "GAME OVER";
     }
     else {
-        title = "Tanker vs Tanker";
+        title = "Thap tank tu do";
     }
 
     std::string instruction;
@@ -208,8 +351,48 @@ void Game::renderMenu()
     SDL_DestroyTexture(highTexture);
 
 
+
+
     TTF_CloseFont(font);
+
+
+
+    TTF_Font* smallFont = TTF_OpenFont("font/mine.ttf", 24);
+    if (smallFont) {
+        SDL_Color textColor = { 255, 255, 255 };
+        std::string soundText = soundOn ? "Sound: ON" : "Sound: OFF";
+
+        SDL_Surface* textSurface = TTF_RenderText_Solid(smallFont, soundText.c_str(), textColor);
+        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+
+        SDL_Rect textRect = { soundButtonRect.x, soundButtonRect.y, textSurface->w, textSurface->h };
+        SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+
+        SDL_FreeSurface(textSurface);
+        SDL_DestroyTexture(textTexture);
+        TTF_CloseFont(smallFont);
+
+    }
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_Rect tutorialButtonRect = { SCREEN_WIDTH / 2 - 100, 320, 200, 50 };
+
+
+    TTF_Font* fonts = TTF_OpenFont("font/mine.ttf", 34);
+    if (fonts) {
+        SDL_Color color = { 0 , 255, 255 };
+        SDL_Surface* surface = TTF_RenderText_Solid(fonts, "TUTORIAL", color);
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+        SDL_Rect textRect = { tutorialButtonRect.x + 30, tutorialButtonRect.y + 120, surface->w, surface->h };
+        SDL_RenderCopy(renderer, texture, NULL, &textRect);
+
+        SDL_FreeSurface(surface);
+        SDL_DestroyTexture(texture);
+        TTF_CloseFont(fonts);
+    }
+
     SDL_RenderPresent(renderer);
+
 }
 
 
@@ -231,7 +414,7 @@ void Game::render()
     for (auto& enemy : enemies) {
         enemy.render(renderer);
     }
-    TTF_Font* font = TTF_OpenFont("font/arial.ttf", 24);
+    TTF_Font* font = TTF_OpenFont("font/mine.ttf", 24);
     if (font) {
         SDL_Color color = { 0, 0, 0 };
         std::string levelText = "Level " + std::to_string(enemyNumber);
@@ -253,7 +436,13 @@ void Game::render()
         SDL_DestroyTexture(texture);
         TTF_CloseFont(font);
     }
+    if (pauseButtonTexture) {
+        SDL_RenderCopy(renderer, pauseButtonTexture, NULL, &pauseButtonRect);
+    }
+
     SDL_RenderPresent(renderer);
+
+
 }
 
 //void Game::generateWalls() {
@@ -394,4 +583,54 @@ void Game::saveHighScore() {
         file << highScore;
         file.close();
     }
+}
+void Game::renderTutorial()
+{
+    SDL_RenderClear(renderer);
+
+    if (tutorialTexture) {
+        SDL_Rect fullScreen = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+        SDL_RenderCopy(renderer, tutorialTexture, NULL, &fullScreen);
+    }
+
+    SDL_RenderPresent(renderer);
+}
+
+void Game::renderPauseMenu()
+{
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180); // nền mờ
+    SDL_RenderClear(renderer);
+
+    TTF_Font* font = TTF_OpenFont("font/mine.ttf", 36);
+    if (!font) return;
+
+    SDL_Color color = { 255, 255, 255 };
+
+    // Resume Button
+    SDL_Rect resumeButton = { SCREEN_WIDTH / 2 - 100, 200, 200, 50 };
+    SDL_SetRenderDrawColor(renderer, 100, 100, 255, 255);
+    SDL_RenderFillRect(renderer, &resumeButton);
+
+    SDL_Surface* resumeSurface = TTF_RenderText_Solid(font, "RESUME", color);
+    SDL_Texture* resumeTexture = SDL_CreateTextureFromSurface(renderer, resumeSurface);
+    SDL_Rect resumeText = { resumeButton.x + 30, resumeButton.y + 10, resumeSurface->w, resumeSurface->h };
+    SDL_RenderCopy(renderer, resumeTexture, NULL, &resumeText);
+    SDL_FreeSurface(resumeSurface);
+    SDL_DestroyTexture(resumeTexture);
+
+    // Back to Menu Button
+    SDL_Rect menuButton = { SCREEN_WIDTH / 2 - 100, 300, 200, 50 };
+    SDL_SetRenderDrawColor(renderer, 255, 100, 100, 255);
+    SDL_RenderFillRect(renderer, &menuButton);
+
+    SDL_Surface* menuSurface = TTF_RenderText_Solid(font, "MENU", color);
+    SDL_Texture* menuTexture = SDL_CreateTextureFromSurface(renderer, menuSurface);
+    SDL_Rect menuText = { menuButton.x + 50, menuButton.y + 10, menuSurface->w, menuSurface->h };
+    SDL_RenderCopy(renderer, menuTexture, NULL, &menuText);
+    SDL_FreeSurface(menuSurface);
+    SDL_DestroyTexture(menuTexture);
+
+    TTF_CloseFont(font);
+
+    SDL_RenderPresent(renderer);
 }

@@ -13,8 +13,11 @@ public:
 	int x, y;
 	SDL_Rect rect;
 	bool active;
+	static SDL_Texture* wallTexture;
 	Wall(int startX, int startY);
 	void render(SDL_Renderer* renderer);
+
+
 };
 
 #endif

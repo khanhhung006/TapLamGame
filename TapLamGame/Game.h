@@ -24,7 +24,9 @@ enum GameState
 {
 	MENU,
 	PLAYING,
-	GAME_OVER
+	GAME_OVER,
+	TUTORIAL,
+	PAUSED
 };
 class Game
 {
@@ -38,6 +40,10 @@ public:
 	int highScore = 1;
 
 	SDL_Texture* menuBackground = nullptr;
+	SDL_Texture* tutorialTexture = nullptr;
+	SDL_Texture* pauseButtonTexture = nullptr;
+	SDL_Rect pauseButtonRect = { SCREEN_WIDTH - 60, 10, 50, 50 }; // góc ph?i 50x50
+
 
 	vector<EnemyTank> enemies;
 	
@@ -45,6 +51,12 @@ public:
 	bool playerWon = false;
 
 	Mix_Chunk* shootSound = nullptr;
+	Mix_Music* backgroundMusic = nullptr;
+	bool soundOn = true;
+
+	SDL_Rect soundButtonRect = { SCREEN_WIDTH - 150, 20, 40, 40 };
+
+
 
 
 	Game();
@@ -59,6 +71,8 @@ public:
 	void renderMenu();
 	void loadHighScore();
 	void saveHighScore();
+	void renderTutorial();
+	void renderPauseMenu();
 
 };
 #endif
