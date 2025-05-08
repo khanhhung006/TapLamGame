@@ -40,7 +40,7 @@
 - AI dùng để kiểm tra những lỗi sai khi mới bắt đầu sử dụng hàm.
 # Liệt kê các nguồn tham khảo (code, hình ảnh, âm thanh...)
 - https://lazyfoo.net/tutorials/SDL/index.php
-- https://github.com/krystiankaluzny/Tanks
+-[Hướng dẫn game Battle City_v2.pptx](https://github.com/user-attachments/files/20094971/H.ng.d.n.game.Battle.City_v2.pptx)
 - https://pixabay.com/vi/sound-effects/search/s%C3%BAng/
 
 
