@@ -71,7 +71,7 @@ void PlayerTank::move(int dx, int dy, const vector<Wall> walls)
 void PlayerTank::shoot()
 {
 	bullets.push_back(Bullet(x + TILE_SIZE / 2 - 5, y + TILE_SIZE / 2 - 5, this->dirX, this-> dirY));
-
+	// tâm màn hình
 }
 
 void PlayerTank::updateBullets()
@@ -81,6 +81,7 @@ void PlayerTank::updateBullets()
 		bullet.move();
 	}
 	bullets.erase(remove_if(bullets.begin(), bullets.end(), [](Bullet& b) { return !b.active; }), bullets.end());
+	// tr?ng thái ??n di chuy?n
 }
 void PlayerTank::resetPosition() {
 	x = ((MAP_WIDTH - 1) / 2) * TILE_SIZE;

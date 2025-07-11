@@ -308,7 +308,7 @@ void Game::renderMenu()
         title = playerWon ? "You Win!" : "GAME OVER";
     }
     else {
-        title = "Thap tank tu do";
+        title = "tank";
     }
 
     std::string instruction;
@@ -395,7 +395,7 @@ void Game::renderMenu()
 
 }
 
-
+//trong khi chơi
 void Game::render()
 {
     SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
@@ -478,7 +478,7 @@ void Game::generateWallsFromFile(const string& filename)
 }
 
 
-
+//trạng thái game 
 void Game::update()
 {
     player.updateBullets();
