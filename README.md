@@ -12,7 +12,7 @@
 
 - Event bàn phím✅
 
-- Event chuột
+- Event chuột✅
 
 - Animation (hoạt hình)
 
@@ -24,15 +24,15 @@
 
 - Sound✅
 
-- Sound on off
+- Sound on off✅
 
-- Background music
+- Background music✅
 
 - Font✅
 
 - Menu✅
 
-- Pause/Resume
+- Pause/Resume✅
 
 - Status bar / lives (mạng/máu...)
 # Mức độ sử dụng AI:
@@ -40,15 +40,15 @@
 - AI dùng để kiểm tra những lỗi sai khi mới bắt đầu sử dụng hàm.
 # Liệt kê các nguồn tham khảo (code, hình ảnh, âm thanh...)
 - https://lazyfoo.net/tutorials/SDL/index.php
-- https://github.com/krystiankaluzny/Tanks
+-[Hướng dẫn game Battle City_v2.pptx](https://github.com/user-attachments/files/20094971/H.ng.d.n.game.Battle.City_v2.pptx)
 - https://pixabay.com/vi/sound-effects/search/s%C3%BAng/
 
 
 # Các hình ảnh về game:
+![image](https://github.com/user-attachments/assets/6576f1e7-3ca7-4018-bb2e-6b35f4654c09)
+![image](https://github.com/user-attachments/assets/84e2a78c-9ba3-4a63-9533-0242813cb598)
+![image](https://github.com/user-attachments/assets/6e6a36c1-9bb1-4423-aff3-8113be813a2f)
 
-![image](https://github.com/user-attachments/assets/5b506c48-9016-42b9-ae92-b0e9eebf2cd9)
-![image](https://github.com/user-attachments/assets/5ea54336-2982-4290-8cf3-b59f526210de)
 
-![image](https://github.com/user-attachments/assets/4d168e5d-93a8-4d17-8f89-4ca52e7dcc9d)
 
 
